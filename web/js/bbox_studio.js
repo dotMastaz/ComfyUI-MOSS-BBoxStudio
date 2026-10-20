@@ -606,15 +606,19 @@ app.registerExtension({
 						ctrlRow.appendChild(delBtn);
 						card.appendChild(ctrlRow);
 
-						const promptInput = document.createElement("input");
-						promptInput.type = "text";
+						const promptInput = document.createElement("textarea");
 						promptInput.value = item.caption;
 						promptInput.placeholder = "Description pour cet item...";
+						promptInput.rows = 3;
 						promptInput.style.backgroundColor = "#181818";
 						promptInput.style.color = "#fff";
 						promptInput.style.border = "1px solid #444";
 						promptInput.style.borderRadius = "3px";
 						promptInput.style.padding = "4px";
+						promptInput.style.resize = "vertical"; // Permet de redimensionner uniquement la hauteur
+						promptInput.style.minHeight = "45px";
+						promptInput.style.fontFamily = "sans-serif";
+						promptInput.style.fontSize = "11px";
 
 						promptInput.addEventListener("input", (e) => {
 							item.caption = e.target.value;
