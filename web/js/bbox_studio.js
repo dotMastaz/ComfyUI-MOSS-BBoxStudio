@@ -61,6 +61,13 @@ app.registerExtension({
 					node.updateOutputWidget();
 				});
 
+				// EMPÊCHER LITEGRAPH D'INTERCAPTER LA SOURIS ET LE CLAVIER
+				["mousedown", "mouseup", "click", "keydown", "keyup"].forEach((eventType) => {
+					summaryInput.addEventListener(eventType, (e) => {
+						e.stopPropagation();
+					});
+				});
+
 				summaryWrapper.appendChild(summaryLabel);
 				summaryWrapper.appendChild(summaryInput);
 				mainContainer.appendChild(summaryWrapper);
@@ -615,10 +622,17 @@ app.registerExtension({
 						promptInput.style.border = "1px solid #444";
 						promptInput.style.borderRadius = "3px";
 						promptInput.style.padding = "4px";
-						promptInput.style.resize = "vertical"; // Permet de redimensionner uniquement la hauteur
+						promptInput.style.resize = "vertical";
 						promptInput.style.minHeight = "45px";
 						promptInput.style.fontFamily = "sans-serif";
 						promptInput.style.fontSize = "11px";
+
+						// EMPÊCHER LITEGRAPH D'INTERCAPTER LA SOURIS ET LE CLAVIER
+						["mousedown", "mouseup", "click", "keydown", "keyup"].forEach((eventType) => {
+							promptInput.addEventListener(eventType, (e) => {
+								e.stopPropagation();
+							});
+						});
 
 						promptInput.addEventListener("input", (e) => {
 							item.caption = e.target.value;
